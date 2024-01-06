@@ -1,6 +1,6 @@
-function Button() {
+function Button({id, text}) {
     return (
-        <button className="button">Symbol</button>
+        <button id={id} className="button">{text}</button>
     )
 }
 
