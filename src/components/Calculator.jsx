@@ -4,16 +4,17 @@ import Display from "./Display";
 
 function Calculator() {
 
-    const [output, setOutput] = useState("");
+    const [input, setInput] = useState("0");
+    const [output, setOutput] = useState("0");
 
-    const outputData = (data) => {
-        setOutput(output + data);
+    const inputData = (data) => {
+        input == "0" ? setInput(data) : setInput(input + data);
     }
 
     return (
         <div className="calculator-wrapper">
-            <Display output={output}/>
-            <Buttons outputData={outputData}/>
+            <Display input={input} output={output}/>
+            <Buttons inputData={inputData} setInput={setInput} input={input} setOutput={setOutput}/>
         </div>
     )
 }
