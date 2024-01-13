@@ -1,6 +1,6 @@
 import Button from './Button'
 
-function Buttons() {
+function Buttons({outputData}) {
 
 const numbersPad = [{
     "id": "seven",
@@ -75,11 +75,11 @@ const operationsPad = [{
 ];
 
 const numberButtons = numbersPad.map((number) =>
-    <Button id={number.id} key={number.id} text={number.text}/>
+    <Button id={number.id} key={number.id} text={number.text} outputData={outputData}/>
 ); 
 
 const operationButtons = operationsPad.map((operation) =>
-    <Button id={operation.id} key={operation.id} text={operation.text}/>
+    <Button id={operation.id} key={operation.id} text={operation.text} outputData={outputData}/>
 ); 
 
     return (
