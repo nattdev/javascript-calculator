@@ -1,8 +1,8 @@
 function Display({input, output}) {
     return (
         <div className="display-wrapper">
-            <p className="input-screen" id="display">{input}</p>
-            <p className="output-screen">{output}</p>
+            <p className="input-screen">{input}</p>
+            <p className="output-screen" id="display">{output}</p>
         </div>
     )
 }
