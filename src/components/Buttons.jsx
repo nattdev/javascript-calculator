@@ -1,6 +1,6 @@
 import Button from './Button'
 
-function Buttons({inputData, setInput, input, setOutput}) {
+function Buttons({inputData, setInput, input, setOutput, output}) {
 
 const numbersPad = [{
     "id": "seven",
@@ -62,7 +62,7 @@ const operationsPad = [{
 },
 {
     "id": "multiply",
-    "text": "x",
+    "text": "*",
 },
 {
     "id": "divide",
@@ -75,11 +75,11 @@ const operationsPad = [{
 ];
 
 const numberButtons = numbersPad.map((number) =>
-    <Button id={number.id} key={number.id} text={number.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput}/>
+    <Button id={number.id} key={number.id} text={number.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput} output={output}/>
 ); 
 
 const operationButtons = operationsPad.map((operation) =>
-    <Button id={operation.id} key={operation.id} text={operation.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput}/>
+    <Button id={operation.id} key={operation.id} text={operation.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput} output={output}/>
 ); 
 
     return (
