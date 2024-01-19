@@ -56,23 +56,23 @@ function Calculator() {
     const handleNumber = (e) => {
         const data = e.target.innerText;
 
-            if (!isEqual) {
-                if (input == "0") {
-                    setInput(data);
-                } else {
-                    setInput(input + data);
-                }
-                output != "0" ?
-                    setOutput(input.slice(lastIndexOperation + 1, input.length) + data) : setOutput(data);
-            } else {
+        if (!isEqual) {
+            if (input == "0") {
                 setInput(data);
-                setOutput(data);
+            } else {
+                setInput(input + data);
             }
+            output != "0" ?
+                setOutput(input.slice(lastIndexOperation + 1, input.length) + data) : setOutput(data);
+        } else {
+            setInput(data);
+            setOutput(data);
+        }
 
-            if (input[input.length - 1] == "0" && input.length > 1 && (!/[1-9]/.test(input[input.length - 2]))) {               
-                const updateInput = input.slice(0, -1)
-                setInput(updateInput + data);
-            } 
+        if (input[input.length - 1] == "0" && input.length > 1 && (/[0-9]/.test(data)) && /[+\-*\/]/.test(input[input.length - 2])) {
+            const updateInput = input.slice(0, -1)
+            setInput(updateInput + data);
+        }
 
         setIsEqual(false);
     }
@@ -84,9 +84,14 @@ function Calculator() {
     }
 
     return (
-        <div className="calculator-wrapper">
-            <Display input={input} output={output} />
-            <Buttons handleNumber={handleNumber} handleDecimal={handleDecimal} handleOperation={handleOperation} clear={clear} calculate={calculate} />
+        <div className="flex flex-col justify-center items-center h-screen ">
+            <header className="text-center mb-8">
+                <h1 className="text-5xl font-bold">REACT.JS CALCULATOR</h1>
+            </header>
+            <div className="calculator-wrapper flex flex-col items-center align-center bg-amber-100">
+                <Display input={input} output={output} />
+                <Buttons handleNumber={handleNumber} handleDecimal={handleDecimal} handleOperation={handleOperation} clear={clear} calculate={calculate} />
+            </div>
         </div>
     )
 }
