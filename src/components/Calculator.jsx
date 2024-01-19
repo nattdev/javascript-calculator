@@ -6,47 +6,87 @@ function Calculator() {
 
     const [input, setInput] = useState("0");
     const [output, setOutput] = useState("0");
+    const [isEqual, setIsEqual] = useState(false);
 
-    const inputData = (data) => {
+    let lastIndexOperation = Math.max(
+        input.lastIndexOf("+"),
+        input.lastIndexOf("-"),
+        input.lastIndexOf("*"),
+        input.lastIndexOf("/")
+    );
 
-        let indexOperation = Math.max(
-            input.lastIndexOf("+"),
-            input.lastIndexOf("-"),
-            input.lastIndexOf("*"),
-            input.lastIndexOf("/")
-        );
-    
-        let firstIndex = Math.max(
-            input.indexOf("+"),
-            input.indexOf("-"),
-            input.indexOf("*"),
-            input.indexOf("/")
-        );
+    const calculate = (e) => {
+        const result = String(eval(input));
 
-        input == "0" ? 
-        setInput(data) : 
-        data == "*" || 
-        data == "/" || 
-        data == "+" ? 
-        (input.slice(-1) == "*" || 
-        input.slice(-1) == "/" ||
-        input.slice(-1) == "+" || 
-        input.slice(-1) == "-") ?
-        indexOperation != firstIndex ? 
-        setInput(input.replace(input.slice(firstIndex - 1, indexOperation + 1), data)) :
-        setInput(input.replace((input.slice(-1)), data)) : setInput(input + data) : 
-        setInput(input + data);
+        setInput(result);
+        setIsEqual(true);
+        setOutput(result);
+    }
 
-        data == "+" || data == "-" ? setOutput(data) : 
-        output == "0" ? 
-        setOutput(data) : 
-        setOutput(input.slice(indexOperation + 1, input.length) + data) ;
+    const handleOperation = (e) => {
+        const data = e.target.innerText;
+        const lastChar = input[input.length - 1]
+        const myRegex = /[+\-*\/]/;
+
+        if (!myRegex.test(lastChar)) {
+            setInput(input + data)
+        } else {
+            if (lastChar != "-" && data == "-") {
+                setInput(input + data)
+            } else if (data !== "-" && lastChar == "-") {
+                setInput(input.slice(0, -2) + data);
+            }
+        }
+
+        setOutput(data);
+        setIsEqual(false);
+    }
+
+    const handleDecimal = (e) => {
+        const data = e.target.innerText;
+
+        if (input.includes(".", lastIndexOperation) == true) {
+        } else {
+            setInput(input + data);
+        }
+
+        setIsEqual(false);
+    }
+
+    const handleNumber = (e) => {
+        const data = e.target.innerText;
+
+            if (!isEqual) {
+                if (input == "0") {
+                    setInput(data);
+                } else {
+                    setInput(input + data);
+                }
+                output != "0" ?
+                    setOutput(input.slice(lastIndexOperation + 1, input.length) + data) : setOutput(data);
+            } else {
+                setInput(data);
+                setOutput(data);
+            }
+
+            if (input[input.length - 1] == "0" && input.length > 1 && (!/[1-9]/.test(input[input.length - 2]))) {               
+                const updateInput = input.slice(0, -1)
+                setInput(updateInput + data);
+            } 
+
+        setIsEqual(false);
+    }
+
+    const clear = (e) => {
+        setInput("0");
+        setOutput("0");
+        setIsEqual(false);
     }
 
     return (
         <div className="calculator-wrapper">
-            <Display input={input} output={output}/>
-            <Buttons inputData={inputData} setInput={setInput} input={input} setOutput={setOutput} output={output}/>
+            <Display input={input} output={output} />
+            <Buttons handleNumber={handleNumber} handleDecimal={handleDecimal} handleOperation={handleOperation} clear={clear} calculate={calculate} />
         </div>
     )
 }

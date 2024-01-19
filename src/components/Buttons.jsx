@@ -1,86 +1,103 @@
 import Button from './Button'
 
-function Buttons({inputData, setInput, input, setOutput, output}) {
+function Buttons({ handleNumber, handleOperation, handleDecimal, clear, calculate }) {
 
-const numbersPad = [{
-    "id": "seven",
-    "text": "7",
-}, 
-{
-    "id": "eight",
-    "text": "8",
-},
-{
-    "id": "nine",
-    "text": "9",
-},
-{
-    "id": "four",
-    "text": "4",
-},
-{
-    "id": "five",
-    "text": "5",
-},
-{
-    "id": "six",
-    "text": "6",
-},
-{
-    "id": "one",
-    "text": "1",
-},
-{
-    "id": "two",
-    "text": "2",
-},
-{
-    "id": "three",
-    "text": "3",
-},
-{
-    "id": "zero",
-    "text": "0",
-},
-{
-    "id": "decimal",
-    "text": ".",
-},
-{
-    "id": "clear",
-    "text": "AC",
-}
-];
+    const numbersPad = [{
+        "id": "seven",
+        "text": "7",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "eight",
+        "text": "8",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "nine",
+        "text": "9",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "four",
+        "text": "4",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "five",
+        "text": "5",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "six",
+        "text": "6",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "one",
+        "text": "1",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "two",
+        "text": "2",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "three",
+        "text": "3",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "zero",
+        "text": "0",
+        "handleOnClick": handleNumber
+    },
+    {
+        "id": "decimal",
+        "text": ".",
+        "handleOnClick": handleDecimal
+    },
+    {
+        "id": "clear",
+        "text": "AC",
+        "handleOnClick": clear
+    }
+    ];
 
-const operationsPad = [{
-    "id": "add",
-    "text": "+",
-}, 
-{
-    "id": "subtract",
-    "text": "-",
-},
-{
-    "id": "multiply",
-    "text": "*",
-},
-{
-    "id": "divide",
-    "text": "/",
-},
-{
-    "id": "equals",
-    "text": "=",
-}
-];
+    const operationsPad = [{
+        "id": "add",
+        "text": "+",
+        "handleOnClick": handleOperation
+    },
+    {
+        "id": "subtract",
+        "text": "-",
+        "handleOnClick": handleOperation
+    },
+    {
+        "id": "multiply",
+        "text": "*",
+        "handleOnClick": handleOperation
+    },
+    {
+        "id": "divide",
+        "text": "/",
+        "handleOnClick": handleOperation
+    },
+    {
+        "id": "equals",
+        "text": "=",
+        "handleOnClick": calculate
+    }
+    ];
 
-const numberButtons = numbersPad.map((number) =>
-    <Button id={number.id} key={number.id} text={number.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput} output={output}/>
-); 
+    const numberButtons = numbersPad.map((number) =>
+        <Button id={number.id} key={number.id} text={number.text} handleOnClick={number.handleOnClick} />
+    );
 
-const operationButtons = operationsPad.map((operation) =>
-    <Button id={operation.id} key={operation.id} text={operation.text} inputData={inputData} setInput={setInput} input={input} setOutput={setOutput} output={output}/>
-); 
+    const operationButtons = operationsPad.map((operation) =>
+        <Button id={operation.id} key={operation.id} text={operation.text} handleOnClick={operation.handleOnClick} />
+    );
 
     return (
         <div className="buttons-wrapper">
