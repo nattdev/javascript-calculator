@@ -92,15 +92,15 @@ function Buttons({ handleNumber, handleOperation, handleDecimal, clear, calculat
     ];
 
     const numberButtons = numbersPad.map((number) =>
-        <Button id={number.id} key={number.id} text={number.text} handleOnClick={number.handleOnClick} />
+        <Button id={number.id} key={number.id} text={number.text} handleOnClick={number.handleOnClick} isNumber={true} />
     );
 
     const operationButtons = operationsPad.map((operation) =>
-        <Button id={operation.id} key={operation.id} text={operation.text} handleOnClick={operation.handleOnClick} />
+        <Button id={operation.id} key={operation.id} text={operation.text} handleOnClick={operation.handleOnClick} isOperation={true} />
     );
-
+ 
     return (
-        <div className="buttons-wrapper">
+        <div className="buttons-wrapper grid grid-rows-4 grid-flow-col grid-cols-5 gap-4 p-6">
             {numberButtons}
             {operationButtons}
         </div>

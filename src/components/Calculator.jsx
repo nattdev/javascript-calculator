@@ -84,14 +84,15 @@ function Calculator() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center h-screen ">
-            <header className="text-center mb-8">
-                <h1 className="text-5xl font-bold">REACT.JS CALCULATOR</h1>
+        <div className="flex flex-col justify-center items-center h-screen bg-neutral-50 dark:bg-slate-900">
+            <header className="text-center mb-20 max-sm:mb-10 px-5">
+                <h1 className="text-5xl max-sm:text-4xl font-bold text-slate-600 dark:text-gray-100">React.js Calculator</h1>
             </header>
-            <div className="calculator-wrapper flex flex-col items-center align-center bg-amber-100">
+            <div className="calculator-wrapper flex flex-col items-center align-center bg-amber-100 dark:bg-slate-700">
                 <Display input={input} output={output} />
                 <Buttons handleNumber={handleNumber} handleDecimal={handleDecimal} handleOperation={handleOperation} clear={clear} calculate={calculate} />
             </div>
+            <footer className="p-2 text-gray-500 dark:text-gray-200"><p>Develop by nattdev</p></footer>
         </div>
     )
 }
